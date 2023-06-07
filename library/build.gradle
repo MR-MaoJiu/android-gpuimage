@@ -1,7 +1,7 @@
-apply plugin: 'com.android.library'
 plugins {
     id 'maven-publish'
 }
+apply plugin: 'com.android.library'
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
 
@@ -31,26 +31,45 @@ android {
     }
 }
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'gpuimage'
-    bintrayUserOrg = 'MR-MaoJiu'
-    publishedGroupId = 'jp.co.cyberagent.android'
-    libraryName = 'gpuimage'
-    artifact = 'gpuimage'
-    libraryDescription = 'Image filters for Android with OpenGL (based on GPUImage for iOS)'
-    siteUrl = 'https://github.com/MR-MaoJiu/android-gpuimage'
-    gitUrl = 'https://github.com/MR-MaoJiu/android-gpuimage.git'
-    issueUrl = 'https://github.com/MR-MaoJiu/android-gpuimage/issues'
 
-    libraryVersion = VERSION_NAME
-//    developerId = 'cats'
-//    developerName = 'CATS'
-//    developerEmail = 'dadadada.chop@gmail.com'
-//    licenseName = 'The Apache Software License, Version 2.0'
-//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//    allLicenses = ["Apache-2.0"]
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+//                from components.release
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'jp.co.cyberagent.android'
+                artifactId = 'final'
+                version = '1.0.0'
+            }
+        }
+    }
 }
+
+//ext {
+//    bintrayRepo = 'maven'
+//    bintrayName = 'gpuimage'
+//    bintrayUserOrg = 'MR-MaoJiu'
+//    publishedGroupId = 'jp.co.cyberagent.android'
+//    libraryName = 'gpuimage'
+//    artifact = 'gpuimage'
+//    libraryDescription = 'Image filters for Android with OpenGL (based on GPUImage for iOS)'
+//    siteUrl = 'https://github.com/MR-MaoJiu/android-gpuimage'
+//    gitUrl = 'https://github.com/MR-MaoJiu/android-gpuimage.git'
+//    issueUrl = 'https://github.com/MR-MaoJiu/android-gpuimage/issues'
+//
+//    libraryVersion = VERSION_NAME
+////    developerId = 'cats'
+////    developerName = 'CATS'
+////    developerEmail = 'dadadada.chop@gmail.com'
+////    licenseName = 'The Apache Software License, Version 2.0'
+////    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+////    allLicenses = ["Apache-2.0"]
+//}
 
 // TODO: Close JCenter on May 1st https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/
 // apply from: 'https://gist.githubusercontent.com/wasabeef/cf14805bee509baf7461974582f17d26/raw/bintray-v1.gradle'
